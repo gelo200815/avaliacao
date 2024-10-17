@@ -1,0 +1,53 @@
+create database biblioteca;
+use biblioteca;
+
+create table livro (
+ id int not null auto_increment, primary key (id),
+ titulo varchar(255) not null,
+ autor varchar(255) not null,
+ editora varchar(255) not null ,
+ ano datetime not null,
+ isbn int not null
+ );
+ 
+ select * from livro;
+ 
+ create table exemplar (
+ id int not null primary key auto_increment,
+ livro_id int not null,
+ statu varchar(255) not null 
+ );
+ 
+ create table usuario (
+ id int not null primary key auto_increment,
+ nome varchar(255) not null,
+ email varchar(255) not null,
+ telefone varchar(255) not null
+ );
+ 
+ create table emprestimo (
+ id int not null primary key auto_increment,
+ exemplar_id int not null,
+ usuario_id int not null, 
+ data_emprestimo datetime not null,
+ data_devolucao datetime not null 
+ );
+ 
+
+  create table emprestimo (
+ id int not null primary key auto_increment,
+ exemplar_id int not null, foreign key(id) references (exemplar),
+ usuario_id int not null, 
+ data_emprestimo datetime not null,
+ data_devolucao datetime not null 
+ );
+ 
+  select * from usuario;
+ 
+ insert into livro (titulo) values ("O Alquimista");
+ insert into livro (titulo) values ("1984"); 
+ insert into exemplar (statu) values ("disponível");
+ insert into exemplar (statu) values ("emprestado");
+ insert into usuario (nome) values ("Maria");
+ insert into usuario (nome) values ("João");
+ insert into emprestimo (data_emprestimo, data_devolucao, exemplar_id, usuario_id) values ("12-12-2008", "20-04-2009", 2, 2)
